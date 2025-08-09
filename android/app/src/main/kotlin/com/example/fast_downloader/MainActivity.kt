@@ -1,0 +1,5 @@
+package com.example.fast_downloader
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity : FlutterActivity()
