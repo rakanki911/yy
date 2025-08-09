@@ -1,9 +1,23 @@
 workflows:
+  build-android-apk:
+    name: Build Android APK
+    max_build_duration: 60
+    instance_type: mac_mini_m2
 
-    sample-workflow:
+    scripts:
+      - name: Install Flutter
+        script: |
+          git clone https://github.com/flutter/flutter.git
+          export PATH="$PATH:`pwd`/flutter/bin"
 
-        name: Codemagic Sample Workflow
+      - name: Flutter clean & pub get
+        script: |
+          flutter clean
+          flutter pub get
 
-        max_build_duration: 120
+      - name: Build APK
+        script: |
+          flutter build apk --release
 
-        instance_type: mac_mini_m2
+    artifacts:
+      - build/app/outputs/flutter-apk/app-release.apk
